@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/blogapp');
+var post = require('../models/post');
 var router = express.Router();
 
 
