@@ -1,0 +1,13 @@
+<% include ./partials/header.ejs %>
+
+<form method="post" action="/<%= topic %>">
+    <div class="ui form">
+        <div class="field">
+            <label>Text</label>
+            <textarea name="textarea"> </textarea>
+        </div>
+        <input type="submit">
+    </div>
+</form>
+
+<% include ./partials/footer.ejs %>

@@ -1,0 +1,17 @@
+.con{
+    text-align: center;
+    border:solid black;
+    padding: 30px;
+}
+
+.index{
+    display:block;
+    text-align: center;
+    height:5%;
+    border:solid black;
+    margin-top:10px;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding:5%;
+    font-size: 35px;
+}
