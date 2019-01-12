@@ -4,6 +4,39 @@
     padding: 30px;
 }
 
+.new{
+    margin: 15px;
+}
+
+.contain{
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+}
+
+.label{
+    font-size: 25px;
+}
+.container{
+    text-align: center;
+    margin: 10%;
+    border-radius: 15px;
+    border:solid #41363a;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+}
+
+.post{
+    font-size: 25px;
+    horiz-align: center;
+border:solid black;
+
+}
 .index{
     display:block;
     text-align: center;

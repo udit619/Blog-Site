@@ -1,12 +1,14 @@
 <% include ./partials/header.ejs %>
 
-<form method="post" action="/<%= topic %>">
-    <div class="ui form">
+<form class="ui form" method="post" action="/<%= topic %>">
+    <div class="container">
+        <div class="label new">Image</div>
         <div class="field">
-            <label>Text</label>
-            <textarea name="textarea"> </textarea>
+            <input class="new" type="text" name="img" placeholder="URL of Image">
         </div>
-        <input type="submit">
+        <div class="label new">Your Post</div>
+        <textarea class="post new lst" name="post"></textarea>
+        <input type="submit" class="ui primary button">
     </div>
 </form>
 

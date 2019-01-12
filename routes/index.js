@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/blogapp');
 var router = express.Router();
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -20,6 +21,7 @@ router.get('/technology',function (req,res) {
 });
 
 router.post('/technology',function (req,res) {
+    console.log(req.body);
    res.redirect('/technology');
 });
 

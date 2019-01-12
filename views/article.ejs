@@ -1,7 +1,9 @@
 <% include ./partials/header.ejs %>
 
-<h1>Blogs on <%= topic %></h1>
 
+<h1 class="head">Blogs on <%= topic %></h1>
+
+<div class="contain">
 <div class="ui celled grid">
     <div class="row" style="height: 100px">
         <div class="three wide column">
@@ -20,7 +22,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <a class="positive ui button" href="/<%= topic %>/new">Create new Post</a>
 
 <% include ./partials/footer.ejs %>
