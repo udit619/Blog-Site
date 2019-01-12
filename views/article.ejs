@@ -1,13 +1,7 @@
 <% include ./partials/header.ejs %>
 
-<a href="/technology" style="display:block;">Technology</a>
-<a href="/sports" style="display:block;">Sports</a>
-<a href="/politics" style="display:block;">Politics</a>
-<a href="/personal" style="display:block;">Personal</a>
+<h1>Blogs on <%= topic %></h1>
 
-<% include ./partials/footer.ejs %>
-
-<!--
 <div class="ui celled grid">
     <div class="row" style="height: 100px">
         <div class="three wide column">
@@ -27,6 +21,6 @@
     </div>
 </div>
 
-<a class="positive ui button" href="/new/technology">Create new Post</a>
+<a class="positive ui button" href="/technology/new">Create new Post</a>
 
--->
+<% include ./partials/footer.ejs %>
