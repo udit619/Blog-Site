@@ -48,3 +48,8 @@ border:solid black;
     padding:5%;
     font-size: 35px;
 }
+
+.image{
+    height: 100%;
+    width:100%;
+}

@@ -18,13 +18,12 @@ router.get('/', function(req, res, next) {
         Technology
  */
 router.get('/technology',function (req,res) {
-    post.find({topic:"technology"},{image:1,post:1,_id:0},function (err,dbpost) {
+    post.find({topic:"technology"},{image:1,post:1},function (err,dbpost) {
         if (err) {
-            console.log(err)
+            console.log(err);
         }
         else {
-            console.log(dbpost);
-            res.render('article', {topic: "technology"});
+            res.render('article', {topic: "technology",posts:dbpost});
         }
 
     });
@@ -59,13 +58,13 @@ router.get('/technology/new',function (req,res) {
  */
 
 router.get('/personal',function (req,res) {
-    post.find({topic:"personal"},{image:1,post:1,_id:0},function (err,dbpost) {
+    post.find({topic:"personal"},{image:1,post:1},function (err,dbpost) {
         if (err) {
             console.log(err)
         }
         else {
             console.log(dbpost);
-            res.render('article', {topic: "personal"});
+            res.render('article', {topic: "personal",posts:dbpost});
         }
 
     });
@@ -101,13 +100,12 @@ router.get('/personal/new',function (req,res) {
  */
 
 router.get('/sports',function (req,res) {
-    post.find({topic:"sports"},{image:1,post:1,_id:0},function (err,dbpost) {
+    post.find({topic:"sports"},{image:1,post:1},function (err,dbpost) {
         if (err) {
             console.log(err)
         }
         else {
-            console.log(dbpost);
-            res.render('article', {topic: "sports"});
+            res.render('article', {topic: "sports",posts:dbpost});
         }
 
     });
@@ -142,15 +140,17 @@ router.get('/sports/new',function (req,res) {
 /*
       POLITICS
  */
+
+
 router.get('/politics',function (req,res) {
-    post.find({topic:"politics"},{image:1,post:1,_id:0},function (err,dbpost) {
+    post.find({topic:"politics"},{image:1,post:1},function (err,dbpost) {
         if (err) {
             console.log(err)
         }
         else {
-            console.log(dbpost);
-            res.render('article', {topic: "politics"});
+            res.render('article', {topic: "politics",posts:dbpost});
         }
+
     });
 });
 
