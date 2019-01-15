@@ -1,0 +1,17 @@
+<% include ./partials/header.ejs %>
+
+
+<div class="img">
+    <h1><%= showing.title %></h1>
+    <br/>
+    <br/>
+    <img src="<%= showing.image %>"/>
+</div>
+
+
+<div class="detail">
+    <div> <b style="font-size: 35px"><%= showing.post.substring(0,1) %></b><%= showing.post.substring(1,showing.post.length)%> </div>
+</div>
+
+
+<% include ./partials/footer.ejs %>

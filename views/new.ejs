@@ -2,9 +2,13 @@
 
 <form class="ui form" method="post" action="/<%= topic %>">
     <div class="container">
+        <div class="label new">Title</div>
+        <div class="field">
+            <input class="new" type="text" name="title" placeholder="Title"/>
+        </div>
         <div class="label new">Image</div>
         <div class="field">
-            <input class="new" type="text" name="img" placeholder="URL of Image">
+            <input class="new" type="text" name="img" placeholder="URL of Image"/>
         </div>
         <div class="label new">Your Post</div>
         <textarea class="post new lst" name="content"></textarea>

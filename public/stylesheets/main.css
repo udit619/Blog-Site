@@ -8,6 +8,10 @@
     margin: 15px;
 }
 
+.hex{
+    text-align: left;
+}
+
 .contain{
     text-align: center;
     margin-top: 5%;
@@ -49,7 +53,46 @@ border:solid black;
     font-size: 35px;
 }
 
-.image{
+.fee{
+    margin:10% 35% 0 35%;
+}
+
+.imag2{
     height: 100%;
     width:100%;
+}
+
+.contain a{
+    font-size: 20px;
+}
+
+.link{
+    position:absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.show{
+    margin-top:5%;
+    margin-bottom: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 15px;
+    border:solid black;
+    height: 95%;
+
+}
+
+.img{
+   text-align: center;
+}
+
+.img img{
+    max-height: 600px;
+    max-width: 400px;
+}
+
+.detail{
+    margin: 5% 15% 5% 15% ;
+    border-radius: 15px;
 }

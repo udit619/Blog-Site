@@ -8,16 +8,13 @@
         <% for(i=0;i<posts.length;i++) { %>
             <div class="row" style="height: 100px">
                 <div class="three wide column">
-                    <img class="image" src="<%= posts[i].image %>">
+                    <img class="imag2" src="<%= posts[i].image %>"/>
                 </div>
-                <div class="thirteen wide column">
-                    <span>
-                        <%= posts[i].post.substring(0,300) %>
+                <div class="thirteen wide column hex">
+                    <span style="font-size: 34px">
+                        <%= posts[i].title %>
                     </span>
-                    <% if(posts[i].post.length>300) { %>
-                    <a href="/<%= topic %>/<%= posts[i]._id %>">Read More</a>
-                   <% } %>
-
+                    <a class="link" href="/<%= topic %>/<%= posts[i]._id %>">Read More</a>
                 </div>
             </div>
         <% } %>
