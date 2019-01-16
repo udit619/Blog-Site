@@ -3,6 +3,9 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/blogapp');
 var post = require('../models/post');
 var router = express.Router();
+var user = require('../models/user');
+var passport = require('passport');
+
 
 
 /* GET home page. */
@@ -237,10 +240,34 @@ router.get('/politics/:id',function (req,res) {
             LOGIN AND SIGNUP
  */
 
-router.get('/login',function (req,res) {
+router.get('/signup',function (req,res)
+    {
+        res.render('signup');
+    });
 
+router.post('/signup',function (req,res) {
+    user.register({username:req.body.username},req.body.password,function (err,user) {
+        if(err){
+            console.log(err);
+            return res.render('signup') }
+            else
+                {
+                    passport.authenticate('local')(req,res,function () {
+                        res.redirect('/');
+                    });
+                }
+    });
+});
+
+
+router.get('/login',function (req,res) {
     res.render('login');
 });
 
+router.post('/login',passport.authenticate('local',{
+    successRedirect:'/',
+    faliureRedirect:'/login'
+}),function (req,res) {
+});
 
 module.exports = router;

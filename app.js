@@ -3,8 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var passport = require('passport');
+var localstatergy = require('passport-local');
 var indexRouter = require('./routes/index');
+var user = require('./models/user');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -12,6 +14,18 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(require('express-session')({
+    secret:'Mohit Namdev',
+    resave:false,
+    saveUninitialized:false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localstatergy(user.authenticate()));
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
+
 
 app.use(logger('dev'));
 app.use(express.json());
