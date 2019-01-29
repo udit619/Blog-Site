@@ -9,9 +9,13 @@
 </div>
 
 
+
 <div class="detail">
     <div> <b style="font-size: 35px"><%= showing.post.substring(0,1) %></b><%= showing.post.substring(1,showing.post.length)%> </div>
 </div>
+<form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
+    <button class="ui red button"> Delete</button>
+</form>
 
 
 <% include ./partials/footer.ejs %>

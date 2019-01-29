@@ -18,8 +18,12 @@
                 <div class="ui transparent icon input">
                     <input type="text" style="color: white" placeholder="Search...">
                     <i class="search link icon"></i>
+                    <% if (!currentuser) { %>
                     <a class="item" href="/login">Login</a>
                     <a class="item" href="/signup">Sign up</a>
+                    <% } else {%>
+                    <a class="item" href="/logout">Log out </a>
+                    <% } %>
                 </div>
             </div>
         </div>
