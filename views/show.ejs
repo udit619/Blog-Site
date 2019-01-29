@@ -7,15 +7,16 @@
     <br/>
     <img src="<%= showing.image %>"/>
 </div>
-
-
-
 <div class="detail">
     <div> <b style="font-size: 35px"><%= showing.post.substring(0,1) %></b><%= showing.post.substring(1,showing.post.length)%> </div>
 </div>
-<form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
-    <button class="ui red button"> Delete</button>
-</form>
-
+<div>
+    <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit">
+        <button class="ui button"> Edit</button>
+    </a>
+    <form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
+        <button class="ui red button"> Delete</button>
+    </form>
+</div>
 
 <% include ./partials/footer.ejs %>
