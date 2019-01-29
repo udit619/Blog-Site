@@ -162,6 +162,43 @@ router.get('/personal/:id',function (req,res) {
 });
 
 
+router.get('/personal/:id/edit',function (req,res) {
+    post.findById(req.params.id,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Its here");
+            res.render('edit',{found:found});
+        }
+    });
+});
+
+
+router.put('/personal/:id',function (req,res) {
+    post.findByIdAndUpdate(req.params.id,{$set:{post:req.body.content,title:req.body.title,image:req.body.img}},function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/personal/'+req.params.id);
+        }
+    })
+});
+
+router.delete('/personal/:id',function (req,res) {
+    post.findByIdAndDelete(req.params.id,function (err,found) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/personal');
+        }
+    });
+});
+
+
+
 /*
         SPORTS
  */
@@ -212,6 +249,43 @@ router.get('/sports/:id',function (req,res) {
         else{
             //console.log(found);
             res.render('show',{showing:found});
+        }
+    });
+});
+
+
+
+router.get('/sports/:id/edit',function (req,res) {
+    post.findById(req.params.id,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Its here");
+            res.render('edit',{found:found});
+        }
+    });
+});
+
+
+router.put('/sports/:id',function (req,res) {
+    post.findByIdAndUpdate(req.params.id,{$set:{post:req.body.content,title:req.body.title,image:req.body.img}},function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/sports/'+req.params.id);
+        }
+    })
+});
+
+router.delete('/sports/:id',function (req,res) {
+    post.findByIdAndDelete(req.params.id,function (err,found) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/sports');
         }
     });
 });
@@ -273,6 +347,43 @@ router.get('/politics/:id',function (req,res) {
         }
     });
 });
+
+
+router.get('/politics/:id/edit',function (req,res) {
+    post.findById(req.params.id,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Its here");
+            res.render('edit',{found:found});
+        }
+    });
+});
+
+
+router.put('/politics/:id',function (req,res) {
+    post.findByIdAndUpdate(req.params.id,{$set:{post:req.body.content,title:req.body.title,image:req.body.img}},function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/politics/'+req.params.id);
+        }
+    })
+});
+
+router.delete('/politics/:id',function (req,res) {
+    post.findByIdAndDelete(req.params.id,function (err,found) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/politics');
+        }
+    });
+});
+
 
 /*
             LOGIN AND SIGNUP
