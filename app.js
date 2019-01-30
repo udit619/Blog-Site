@@ -35,9 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*
-
 Following is done so that the information can be requested from any ejs page rather than declaring it exclusivly
-
  */
 
 app.use(function (req,res,next) {

@@ -6,7 +6,7 @@ var router = express.Router();
 var user = require('../models/user');
 var passport = require('passport');
 var nodemailer = require('nodemailer');
-
+var middleware = require('../middleware');
 //global variables
 
 
@@ -36,13 +36,19 @@ router.get('/technology',function (req,res) {
 router.post('/technology',function (req,res) {
     var image = req.body.img;
     var title = req.body.title;
+    var author={
+        id:req.user._id,
+        username:req.user.username
+    };
     var content=req.body.content;
     var naya ={
       image:image,
       title:title,
       post:content,
-      topic:"technology"
+      topic:"technology",
+      author:author
     };
+    console.log(naya);
     post.create(naya,function (err,blog) {
        if(err){
            console.log('error');
@@ -54,7 +60,7 @@ router.post('/technology',function (req,res) {
     });
 });
 
-router.get('/technology/new',function (req,res) {
+router.get('/technology/new',middleware.loggedIn,function (req,res) {
 
   res.render('new',{topic:"technology"});
 });
@@ -127,10 +133,17 @@ router.get('/personal',function (req,res) {
 router.post('/personal',function (req,res) {
     var image = req.body.img;
     var content=req.body.content;
+    var title=req.body.title;
+    var author={
+        id:req.user._id,
+        username:req.user.username
+    };
     var naya ={
+        title:title,
         image:image,
         post:content,
-        topic:"personal"
+        topic:"personal",
+        author:author
     };
     post.create(naya,function (err,blog) {
         if(err){
@@ -144,7 +157,7 @@ router.post('/personal',function (req,res) {
 });
 
 
-router.get('/personal/new',function (req,res) {
+router.get('/personal/new',middleware.loggedIn,function (req,res) {
     res.render('new',{topic:"personal"});
 });
 
@@ -155,7 +168,6 @@ router.get('/personal/:id',function (req,res) {
             console.log(err);
         }
         else{
-            //console.log(found);
             res.render('show',{showing:found});
         }
     });
@@ -217,10 +229,17 @@ router.get('/sports',function (req,res) {
 router.post('/sports',function (req,res) {
     var image = req.body.img;
     var content=req.body.content;
+    var title = req.body.title;
+    var author={
+        id:req.user._id,
+        username:req.user.username
+    };
     var naya ={
+        title:title,
         image:image,
         post:content,
-        topic:"sports"
+        topic:"sports",
+        author:author
     };
     post.create(naya,function (err,blog) {
         if(err){
@@ -233,7 +252,7 @@ router.post('/sports',function (req,res) {
     });
 });
 
-router.get('/sports/new',function (req,res) {
+router.get('/sports/new',middleware.loggedIn,function (req,res) {
 
     res.render('new',{topic:"sports"});
 
@@ -311,11 +330,19 @@ router.get('/politics',function (req,res) {
 router.post('/politics',function (req,res) {
     var image = req.body.img;
     var content=req.body.content;
+    var author={
+        id:req.user._id,
+            username:req.user.username
+    };
+    var title= req.body.title;
     var naya ={
+        title:title,
         image:image,
         post:content,
-        topic:"politics"
+        topic:"politics",
+        author:author
     };
+    console.log(naya);
     post.create(naya,function (err,blog) {
         if(err){
             console.log('error');
@@ -328,7 +355,7 @@ router.post('/politics',function (req,res) {
 });
 
 
-router.get('/politics/new',function (req,res) {
+router.get('/politics/new',middleware.loggedIn,function (req,res) {
 
     res.render('new',{topic:"politics"});
 
@@ -427,6 +454,13 @@ router.get('/logout',function (req,res) {
    req.logout();
    res.redirect('/');
 });
+
+
+/*
+    Middleware
+ */
+
+
 
 module.exports = router;
 
