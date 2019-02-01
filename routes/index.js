@@ -29,6 +29,7 @@ router.get('/technology',function (req,res) {
         }
         else {
             res.render('article', {topic: "technology",posts:dbpost});
+
         }
     });
 });
@@ -115,6 +116,10 @@ router.delete('/technology/:id',function (req,res) {
     });
 });
 
+router.get('/technology/:id/comments/new',function(req,res){
+    res.render('comments',{topic:'technology',id:req.params.id});
+});
+
 /*
       PERSONAL
  */
@@ -122,10 +127,11 @@ router.delete('/technology/:id',function (req,res) {
 router.get('/personal',function (req,res) {
     post.find({topic:"personal"},{image:1,title:1},function (err,dbpost) {
         if (err) {
-            console.log(err)
+            console.log(err);
         }
         else {
             res.render('article', {topic: "personal",posts:dbpost});
+
         }
     });
 });
@@ -216,7 +222,7 @@ router.delete('/personal/:id',function (req,res) {
  */
 
 router.get('/sports',function (req,res) {
-    post.find({topic:"sports"},{image:1,post:1},function (err,dbpost) {
+    post.find({topic:"sports"},{image:1,title:1},function (err,dbpost) {
         if (err) {
             console.log(err)
         }
@@ -316,12 +322,13 @@ router.delete('/sports/:id',function (req,res) {
 
 
 router.get('/politics',function (req,res) {
-    post.find({topic:"politics"},{image:1,post:1},function (err,dbpost) {
+    post.find({topic:"politics"},{image:1,title:1},function (err,dbpost) {
         if (err) {
             console.log(err)
         }
         else {
             res.render('article', {topic: "politics",posts:dbpost});
+
         }
 
     });

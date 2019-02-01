@@ -39,8 +39,15 @@
     font-size: 25px;
     horiz-align: center;
 border:solid black;
-
 }
+
+.comment-con{
+    margin:5% 5% 0% 5%;
+    padding: 2% 10% 2% 10%;
+    border:solid black;
+    border-radius: 5px;
+}
+
 .index{
     display:block;
     text-align: center;
@@ -51,6 +58,13 @@ border:solid black;
     margin-right: 15%;
     padding:5%;
     font-size: 35px;
+}
+
+.comments{
+    border: black 2px;
+    border-radius: 25px;
+    height: 50px;
+    width:50px;
 }
 
 .fee{

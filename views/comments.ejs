@@ -1,0 +1,14 @@
+<% include ./partials/header.ejs %>
+
+<form class="ui form" method="post" action="/<%= topic %>/<%= id %>">
+    <div class="comment-con">
+        <div class="label new">Comment</div>
+        <div class="field">
+            <textarea class="new" name="comment" placeholder="Your Comment...."></textarea>
+        </div>
+        <input type="submit" class="ui primary button">
+    </div>
+</form>
+
+
+<% include ./partials/footer.ejs %>

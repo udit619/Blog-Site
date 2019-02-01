@@ -1,6 +1,6 @@
 <% include ./partials/header.ejs %>
 
-
+<div>
 <div class="img">
     <h1><%= showing.title %></h1>
     <br/>
@@ -9,14 +9,22 @@
 </div>
 <div class="detail">
     <div> <b style="font-size: 35px"><%= showing.post.substring(0,1) %></b><%= showing.post.substring(1,showing.post.length)%> </div>
+    <div>
+        <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit">
+            <button class="ui button"> Edit</button>
+        </a>
+        <form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
+            <button class="ui red button"> Delete</button>
+        </form>
+    </div>
 </div>
-<div>
-    <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit">
-        <button class="ui button"> Edit</button>
-    </a>
-    <form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
-        <button class="ui red button"> Delete</button>
-    </form>
+
+</div>
+<div class="comments">
+    <% for(i=0;i<showing.comments.length;i++) { %>
+        <div><%= comments[i] %> </div>
+    <% } %>
+
 </div>
 
 <% include ./partials/footer.ejs %>
