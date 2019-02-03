@@ -13,7 +13,7 @@ var PostSchema = new mongoose.Schema({
         username:String,
     },
     comments:[{
-       ref:'comments',
+       ref:'comment',
         type:mongoose.Schema.Types.ObjectId
     }]
 });

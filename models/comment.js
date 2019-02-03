@@ -4,8 +4,11 @@ var mongoose = require('mongoose');
 var CommentSchema = new mongoose.Schema({
     comment:String,
     author:{
-        id:mongoose.Schema.Types.ObjectId,
-        ref:'user'
+    id:{
+        ref:'user',
+         type:mongoose.Schema.Types.ObjectId
+        },
+        username:String
     }
 });
 

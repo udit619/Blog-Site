@@ -21,9 +21,9 @@
 
 </div>
 <div class="comments">
-    <% for(i=0;i<showing.comments.length;i++) { %>
-        <div><%= comments[i] %> </div>
-    <% } %>
+    <% showing.comments.forEach(function (comment) { %>
+        <div><%= comment.comment %> </div>
+    <% }) %>
 
 </div>
 

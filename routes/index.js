@@ -1,11 +1,12 @@
 var express = require('express');
+var router = express.Router();
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/blogapp');
 var post = require('../models/post');
-var router = express.Router();
+
 var user = require('../models/user');
 var passport = require('passport');
-var nodemailer = require('nodemailer');
+var Comment = require('../models/comment');
 var middleware = require('../middleware');
 //global variables
 
@@ -68,7 +69,7 @@ router.get('/technology/new',middleware.loggedIn,function (req,res) {
 
 router.get('/technology/:id',function (req,res) {
 
-    post.findById(req.params.id,function(err,found){
+    post.findById(req.params.id).populate('comments').exec(function(err,found){
         if(err){
             console.log("Technology wala error");
             console.log(err);
@@ -117,8 +118,52 @@ router.delete('/technology/:id',function (req,res) {
 });
 
 router.get('/technology/:id/comments/new',function(req,res){
-    res.render('comments',{topic:'technology',id:req.params.id});
+    post.findById(req.params.id,function (err,post){
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Yahan tk ");
+            res.render('comments',{topic:'technology',id:req.params.id});
+        }
+        });
+
 });
+
+router.post('/technology/:id/comments',function (req,res) {
+    post.findById(req.params.id,function (err,post) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Yahan tk aaya");
+            var commented = req.body.comment;
+            var author={
+                id:req.user._id,
+                username:req.user.username
+            };
+            var naya={
+              comment:commented,
+              author:author
+            };
+            console.log(naya);
+            Comment.create(naya,function (err,comment) {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    comment.save();
+                    post.comments.push(comment);
+                    post.save();
+                    res.redirect('/technology/'+req.params.id);
+                }
+
+            })
+        }
+        
+    })
+    
+})
 
 /*
       PERSONAL
