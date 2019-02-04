@@ -9,6 +9,7 @@
 </div>
 <div class="detail">
     <div> <b style="font-size: 35px"><%= showing.post.substring(0,1) %></b><%= showing.post.substring(1,showing.post.length)%> </div>
+    <% if(currentuser && showing.author.id.equals(currentuser._id)) { %>
     <div>
         <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit">
             <button class="ui button"> Edit</button>
@@ -17,14 +18,36 @@
             <button class="ui red button"> Delete</button>
         </form>
     </div>
+    <% } %>
 </div>
+    <p style="font-weight: bold;font-size: 35px;margin-left: 15px">Comments-</p>
 
 </div>
 <div class="comments">
     <% showing.comments.forEach(function (comment) { %>
-        <div><%= comment.comment %> </div>
-    <% }) %>
 
-</div>
+        <div>
+            <% if(currentuser && comment.author.id.equals(currentuser._id)) { %>
+            <div>
+                <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit">
+                    <button class="ui button"> Edit</button>
+                </a>
+                <form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
+                    <button class="ui red button"> Delete</button>
+                </form>
+            </div>
+                <% } %>
+            <p style="font-size: 25px; font-weight: bold;margin-bottom: 10px"><%= comment.author.username %></p>
+
+            <%= comment.comment %>
+            <hr/>
+            <br>
+            <br>
+        </div>
+
+
+    <% }) %>
+        </div>
+
 
 <% include ./partials/footer.ejs %>

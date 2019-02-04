@@ -117,7 +117,7 @@ router.delete('/technology/:id',function (req,res) {
     });
 });
 
-router.get('/technology/:id/comments/new',function(req,res){
+router.get('/technology/:id/comments/new',middleware.loggedIn,function(req,res){
     post.findById(req.params.id,function (err,post){
         if(err){
             console.log(err)
@@ -130,7 +130,7 @@ router.get('/technology/:id/comments/new',function(req,res){
 
 });
 
-router.post('/technology/:id/comments',function (req,res) {
+router.post('/technology/:id/comments',middleware.loggedIn,function (req,res) {
     post.findById(req.params.id,function (err,post) {
         if(err){
             console.log(err);
