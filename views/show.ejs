@@ -1,6 +1,6 @@
 <% include ./partials/header.ejs %>
 
-<div>
+<div class ="of">
 <div class="img">
     <h1><%= showing.title %></h1>
     <br/>
@@ -20,9 +20,10 @@
     </div>
     <% } %>
 </div>
+</div>
     <p style="font-weight: bold;font-size: 35px;margin-left: 15px">Comments-</p>
 
-</div>
+
 <div class="comments">
     <% showing.comments.forEach(function (comment) { %>
 

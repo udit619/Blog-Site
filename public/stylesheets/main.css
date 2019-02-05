@@ -48,18 +48,13 @@ border:solid black;
     border-radius: 5px;
 }
 
-.like-counter {
-    color: #000;
-    text-decoration: none;
-    margin-right: 5px;
 
-&:hover {
-     text-decoration: underline;
- }
+.of{
+    border:solid black;
+    border-radius: 10px;
+    margin-right: 10%;
+    margin-left: 10%;
 
-}
-.liked {
-    font-weight: bold;
 }
 
 .index{
