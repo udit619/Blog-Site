@@ -163,7 +163,7 @@ router.post('/technology/:id/comments',middleware.loggedIn,function (req,res) {
         
     })
     
-})
+});
 
 /*
       PERSONAL
@@ -260,7 +260,53 @@ router.delete('/personal/:id',function (req,res) {
     });
 });
 
+router.get('/personal/:id/comments/new',middleware.loggedIn,function(req,res){
+    post.findById(req.params.id,function (err,post){
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Yahan tk ");
+            res.render('comments',{topic:'personal',id:req.params.id});
+        }
+    });
 
+});
+
+router.post('/personal/:id/comments',middleware.loggedIn,function (req,res) {
+    post.findById(req.params.id,function (err,post) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Yahan tk aaya");
+            var commented = req.body.comment;
+            var author={
+                id:req.user._id,
+                username:req.user.username
+            };
+            var naya={
+                comment:commented,
+                author:author
+            };
+            console.log(naya);
+            Comment.create(naya,function (err,comment) {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    comment.save();
+                    post.comments.push(comment);
+                    post.save();
+                    res.redirect('/personal/'+req.params.id);
+                }
+
+            })
+        }
+
+    })
+
+});
 
 /*
         SPORTS
@@ -358,6 +404,54 @@ router.delete('/sports/:id',function (req,res) {
             res.redirect('/sports');
         }
     });
+});
+
+router.get('/sports/:id/comments/new',middleware.loggedIn,function(req,res){
+    post.findById(req.params.id,function (err,post){
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Yahan tk ");
+            res.render('comments',{topic:'sports',id:req.params.id});
+        }
+    });
+
+});
+
+router.post('/sports/:id/comments',middleware.loggedIn,function (req,res) {
+    post.findById(req.params.id,function (err,post) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Yahan tk aaya");
+            var commented = req.body.comment;
+            var author={
+                id:req.user._id,
+                username:req.user.username
+            };
+            var naya={
+                comment:commented,
+                author:author
+            };
+            console.log(naya);
+            Comment.create(naya,function (err,comment) {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    comment.save();
+                    post.comments.push(comment);
+                    post.save();
+                    res.redirect('/sports/'+req.params.id);
+                }
+
+            })
+        }
+
+    })
+
 });
 
 
@@ -461,6 +555,54 @@ router.delete('/politics/:id',function (req,res) {
             res.redirect('/politics');
         }
     });
+});
+
+router.get('/politics/:id/comments/new',middleware.loggedIn,function(req,res){
+    post.findById(req.params.id,function (err,post){
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log("Yahan tk ");
+            res.render('comments',{topic:'politics',id:req.params.id});
+        }
+    });
+
+});
+
+router.post('/politics/:id/comments',middleware.loggedIn,function (req,res) {
+    post.findById(req.params.id,function (err,post) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("Yahan tk aaya");
+            var commented = req.body.comment;
+            var author={
+                id:req.user._id,
+                username:req.user.username
+            };
+            var naya={
+                comment:commented,
+                author:author
+            };
+            console.log(naya);
+            Comment.create(naya,function (err,comment) {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    comment.save();
+                    post.comments.push(comment);
+                    post.save();
+                    res.redirect('/politics/'+req.params.id);
+                }
+
+            })
+        }
+
+    })
+
 });
 
 
