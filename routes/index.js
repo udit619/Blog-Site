@@ -29,7 +29,7 @@ router.get('/technology',function (req,res) {
             console.log(err);
         }
         else {
-            res.render('article', {topic: "technology",posts:dbpost});
+            res.render('topics/article', {topic: "technology",posts:dbpost});
 
         }
     });
@@ -77,7 +77,7 @@ router.get('/technology/:id',function (req,res) {
         else{
 
             //console.log(found);
-            res.render('show',{showing:found});
+            res.render('topics/show',{showing:found});
         }
     });
 });
@@ -90,7 +90,7 @@ router.get('/technology/:id/edit/',function (req,res) {
         }
         else{
             console.log("Its here");
-            res.render('edit',{found:found});
+            res.render('topics/edit',{found:found});
         }
     });
 });
@@ -125,7 +125,7 @@ router.get('/technology/:id/comments/new',middleware.loggedIn,function(req,res){
         }
         else{
             console.log("Yahan tk ");
-            res.render('comments',{topic:'technology',id:req.params.id});
+            res.render('comment/new',{topic:'technology',id:req.params.id});
         }
         });
 
@@ -216,7 +216,7 @@ router.get('/personal',function (req,res) {
             console.log(err);
         }
         else {
-            res.render('article', {topic: "personal",posts:dbpost});
+            res.render('topics/article', {topic: "personal",posts:dbpost});
 
         }
     });
@@ -254,13 +254,14 @@ router.get('/personal/new',middleware.loggedIn,function (req,res) {
 });
 
 router.get('/personal/:id',function (req,res) {
-    post.findById(req.params.id,function(err,found){
+    post.findById(req.params.id).populate('comments').exec(function(err,found){
         if(err){
             console.log("Personal wala error");
             console.log(err);
         }
         else{
-            res.render('show',{showing:found});
+
+            res.render('topics/show',{showing:found});
         }
     });
 });
@@ -273,7 +274,7 @@ router.get('/personal/:id/edit',function (req,res) {
         }
         else{
             console.log("Its here");
-            res.render('edit',{found:found});
+            res.render('topics/edit',{found:found});
         }
     });
 });
@@ -308,7 +309,7 @@ router.get('/personal/:id/comments/new',middleware.loggedIn,function(req,res){
         }
         else{
             console.log("Yahan tk ");
-            res.render('comments',{topic:'personal',id:req.params.id});
+            res.render('comment/new',{topic:'personal',id:req.params.id});
         }
     });
 
@@ -402,7 +403,7 @@ router.get('/sports',function (req,res) {
             console.log(err)
         }
         else {
-            res.render('article', {topic: "sports",posts:dbpost});
+            res.render('topics/article', {topic: "sports",posts:dbpost});
         }
     });
 });
@@ -441,14 +442,14 @@ router.get('/sports/new',middleware.loggedIn,function (req,res) {
 
 router.get('/sports/:id',function (req,res) {
 
-    post.findById(req.params.id,function(err,found){
+    post.findById(req.params.id).populate('comments').exec(function(err,found){
         if(err){
             console.log("Sports wala error");
             console.log(err);
         }
         else{
             //console.log(found);
-            res.render('show',{showing:found});
+            res.render('topics/show',{showing:found});
         }
     });
 });
@@ -462,7 +463,7 @@ router.get('/sports/:id/edit',function (req,res) {
         }
         else{
             console.log("Its here");
-            res.render('edit',{found:found});
+            res.render('topics/edit',{found:found});
         }
     });
 });
@@ -497,7 +498,7 @@ router.get('/sports/:id/comments/new',middleware.loggedIn,function(req,res){
         }
         else{
             console.log("Yahan tk ");
-            res.render('comments',{topic:'sports',id:req.params.id});
+            res.render('comment/new',{topic:'sports',id:req.params.id});
         }
     });
 
@@ -593,7 +594,7 @@ router.get('/politics',function (req,res) {
             console.log(err)
         }
         else {
-            res.render('article', {topic: "politics",posts:dbpost});
+            res.render('topics/article', {topic: "politics",posts:dbpost});
 
         }
 
@@ -636,14 +637,14 @@ router.get('/politics/new',middleware.loggedIn,function (req,res) {
 
 router.get('/politics/:id',function (req,res) {
 
-    post.findById(req.params.id,function(err,found){
+    post.findById(req.params.id).populate('comments').exec(function(err,found){
         if(err){
             console.log("Politics wala error");
             console.log(err);
         }
         else{
-            //console.log(found);
-            res.render('show',{showing:found});
+            console.log(found);
+            res.render('topics/show',{showing:found});
         }
     });
 });
@@ -656,7 +657,7 @@ router.get('/politics/:id/edit',function (req,res) {
         }
         else{
             console.log("Its here");
-            res.render('edit',{found:found});
+            res.render('topics/edit',{found:found});
         }
     });
 });
@@ -691,7 +692,7 @@ router.get('/politics/:id/comments/new',middleware.loggedIn,function(req,res){
         }
         else{
             console.log("Yahan tk ");
-            res.render('comments',{topic:'politics',id:req.params.id});
+            res.render('comment/new',{topic:'politics',id:req.params.id});
         }
     });
 
