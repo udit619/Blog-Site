@@ -11,7 +11,7 @@
     <div> <b style="font-size: 35px"><%= showing.post.substring(0,1) %></b><%= showing.post.substring(1,showing.post.length)%> </div>
     <% if(currentuser && showing.author.id.equals(currentuser._id)) { %>
     <div>
-        <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit">
+        <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit/">
             <button class="ui button"> Edit</button>
         </a>
         <form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
@@ -21,7 +21,10 @@
     <% } %>
 </div>
 </div>
+<% if(showing.comments.length >0) {%>
     <p style="font-weight: bold;font-size: 35px;margin-left: 15px">Comments-</p>
+<% }  %>
+
 
 
 <div class="comments">
@@ -30,10 +33,10 @@
         <div>
             <% if(currentuser && comment.author.id.equals(currentuser._id)) { %>
             <div>
-                <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/edit">
+                <a style="float: right"  href="/<%= showing.topic %>/<%= showing._id %>/comments/<%=comment._id %>/edit">
                     <button class="ui button"> Edit</button>
                 </a>
-                <form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/?_method=DELETE" method="post">
+                <form style="float: right"  action="/<%= showing.topic %>/<%= showing._id %>/comments/<%=comment._id %>/?_method=DELETE" method="post">
                     <button class="ui red button"> Delete</button>
                 </form>
             </div>
@@ -49,6 +52,6 @@
 
     <% }) %>
         </div>
-
+<a id="faa" class = "orange ui button" href="/<%= showing.topic%>/<%= showing._id%>/comments/new">New Comment</a>
 
 <% include ./partials/footer.ejs %>

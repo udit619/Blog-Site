@@ -82,7 +82,8 @@ router.get('/technology/:id',function (req,res) {
     });
 });
 
-router.get('/technology/:id/edit',function (req,res) {
+router.get('/technology/:id/edit/',function (req,res) {
+    console.log(req.params);
     post.findById(req.params.id,function (err,found) {
         if(err){
             console.log(err);
@@ -164,6 +165,46 @@ router.post('/technology/:id/comments',middleware.loggedIn,function (req,res) {
     })
     
 });
+
+router.get('/technology/:id/comments/:ids/edit/',function (req,res) {
+    Comment.findById(req.params.ids,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            var x =req.params.id;
+            res.render('comment/edit.ejs',{found:found,topic:'technology',blog:x});
+        }
+    });
+
+});
+
+router.put('/technology/:id/comments/:ids',function (req,res) {
+   Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
+       if(err){
+           console.log(err);
+       }
+       else{
+           res.redirect('/technology/'+req.params.id);
+       }
+
+   });
+
+});
+
+router.delete('/technology/:id/comments/:ids',function (req,res) {
+   Comment.findByIdAndDelete(req.params.ids,function (err,found) {
+       if(err){
+           console.log(err);
+       }
+       else{
+           res.redirect('/technology/'+req.params.id);
+       }
+
+   })
+
+});
+
 
 /*
       PERSONAL
@@ -307,6 +348,49 @@ router.post('/personal/:id/comments',middleware.loggedIn,function (req,res) {
     })
 
 });
+
+
+router.get('/personal/:id/comments/:ids/edit/',function (req,res) {
+    Comment.findById(req.params.ids,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            var x =req.params.id;
+            res.render('comment/edit.ejs',{found:found,topic:'personal',blog:x});
+        }
+    });
+
+});
+
+router.put('/personal/:id/comments/:ids',function (req,res) {
+    Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/personal/'+req.params.id);
+        }
+
+    });
+
+});
+
+router.delete('/personal/:id/comments/:ids',function (req,res) {
+    Comment.findByIdAndDelete(req.params.ids,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/personal/'+req.params.id);
+        }
+
+    })
+
+});
+
+
+
 
 /*
         SPORTS
@@ -453,6 +537,49 @@ router.post('/sports/:id/comments',middleware.loggedIn,function (req,res) {
     })
 
 });
+
+
+router.get('/sports/:id/comments/:ids/edit/',function (req,res) {
+    Comment.findById(req.params.ids,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            var x =req.params.id;
+            res.render('comment/edit.ejs',{found:found,topic:'sports',blog:x});
+        }
+    });
+
+});
+
+router.put('/sports/:id/comments/:ids',function (req,res) {
+    Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/sports/'+req.params.id);
+        }
+
+    });
+
+});
+
+router.delete('/sports/:id/comments/:ids',function (req,res) {
+    Comment.findByIdAndDelete(req.params.ids,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/sports/'+req.params.id);
+        }
+
+    })
+
+});
+
+
+
 
 
 /*
@@ -606,6 +733,48 @@ router.post('/politics/:id/comments',middleware.loggedIn,function (req,res) {
 });
 
 
+router.get('/politics/:id/comments/:ids/edit/',function (req,res) {
+    Comment.findById(req.params.ids,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            var x =req.params.id;
+            res.render('comment/edit.ejs',{found:found,topic:'politics',blog:x});
+        }
+    });
+
+});
+
+router.put('/politics/:id/comments/:ids',function (req,res) {
+    Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/politics/'+req.params.id);
+        }
+
+    });
+
+});
+
+router.delete('/politics/:id/comments/:ids',function (req,res) {
+    Comment.findByIdAndDelete(req.params.ids,function (err,found) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/politics/'+req.params.id);
+        }
+
+    })
+
+});
+
+
+
+
 /*
             LOGIN AND SIGNUP
  */
@@ -649,10 +818,6 @@ router.get('/logout',function (req,res) {
    res.redirect('/');
 });
 
-
-/*
-    Middleware
- */
 
 
 

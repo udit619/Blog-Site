@@ -12,6 +12,24 @@
     text-align: left;
 }
 
+#faa {
+    padding:25px;
+    font-size: 22px;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+    border:none;
+    box-shadow: 0 6px olivedrab;
+}
+
+#faa:hover{
+    box-shadow: 0 3px olivedrab;
+}
+
+#faa:active{
+    box-shadow: 0 0 ;
+}
+
 .contain{
     text-align: center;
     margin-top: 5%;
@@ -20,6 +38,10 @@
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 5%;
+}
+
+.contain:hover{
+    color: firebrick;
 }
 
 .label{
