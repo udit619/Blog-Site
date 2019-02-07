@@ -4,6 +4,7 @@
 <h1 class="head">Blogs on <%= topic %></h1>
 
 <div class="contain">
+    <% if(posts.length>0){%>
     <div class="ui celled grid">
         <% for(i=0;i<posts.length;i++) { %>
             <div class="row" style="height: 100px">
@@ -19,6 +20,7 @@
             </div>
         <% } %>
     </div>
+    <% } %>
 </div>
 <a id="faa" class="positive ui button booo" href="/<%= topic %>/new">Create new Post</a>
 

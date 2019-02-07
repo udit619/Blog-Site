@@ -39,11 +39,6 @@
     padding-right: 10%;
     padding-bottom: 5%;
 }
-
-.contain:hover{
-    color: firebrick;
-}
-
 .label{
     font-size: 25px;
 }
@@ -87,8 +82,15 @@ border:solid black;
     margin-top:10px;
     margin-left: 15%;
     margin-right: 15%;
+    border-radius: 20px;
     padding:5%;
     font-size: 35px;
+}
+
+.index:hover{
+    background: #84a6ff;
+    transition-duration: 1s;
+    transition-timing-function: ease-in;
 }
 
 .comments{
