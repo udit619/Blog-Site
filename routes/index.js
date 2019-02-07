@@ -35,7 +35,7 @@ router.get('/technology',function (req,res) {
     });
 });
 
-router.post('/technology',function (req,res) {
+router.post('/technology',middleware.loggedIn,function (req,res) {
     var image = req.body.img;
     var title = req.body.title;
     var author={
@@ -82,7 +82,7 @@ router.get('/technology/:id',function (req,res) {
     });
 });
 
-router.get('/technology/:id/edit/',function (req,res) {
+router.get('/technology/:id/edit/',middleware.author,function (req,res) {
     console.log(req.params);
     post.findById(req.params.id,function (err,found) {
         if(err){
@@ -96,7 +96,7 @@ router.get('/technology/:id/edit/',function (req,res) {
 });
 
 
-router.put('/technology/:id',function (req,res) {
+router.put('/technology/:id',middleware.author,function (req,res) {
     post.findByIdAndUpdate(req.params.id,{$set:{post:req.body.content,title:req.body.title,image:req.body.img}},function (err,found) {
         if(err){
             console.log(err);
@@ -107,7 +107,7 @@ router.put('/technology/:id',function (req,res) {
     })
 });
 
-router.delete('/technology/:id',function (req,res) {
+router.delete('/technology/:id',middleware.author,function (req,res) {
     post.findByIdAndDelete(req.params.id,function (err,found) {
         if (err){
             console.log(err);
@@ -166,7 +166,7 @@ router.post('/technology/:id/comments',middleware.loggedIn,function (req,res) {
     
 });
 
-router.get('/technology/:id/comments/:ids/edit/',function (req,res) {
+router.get('/technology/:id/comments/:ids/edit/',middleware.comment,function (req,res) {
     Comment.findById(req.params.ids,function (err,found) {
         if(err){
             console.log(err);
@@ -179,7 +179,7 @@ router.get('/technology/:id/comments/:ids/edit/',function (req,res) {
 
 });
 
-router.put('/technology/:id/comments/:ids',function (req,res) {
+router.put('/technology/:id/comments/:ids',middleware.comment,function (req,res) {
    Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
        if(err){
            console.log(err);
@@ -192,7 +192,7 @@ router.put('/technology/:id/comments/:ids',function (req,res) {
 
 });
 
-router.delete('/technology/:id/comments/:ids',function (req,res) {
+router.delete('/technology/:id/comments/:ids',middleware.comment,function (req,res) {
    Comment.findByIdAndDelete(req.params.ids,function (err,found) {
        if(err){
            console.log(err);
@@ -200,9 +200,7 @@ router.delete('/technology/:id/comments/:ids',function (req,res) {
        else{
            res.redirect('/technology/'+req.params.id);
        }
-
-   })
-
+   });
 });
 
 
@@ -222,7 +220,7 @@ router.get('/personal',function (req,res) {
     });
 });
 
-router.post('/personal',function (req,res) {
+router.post('/personal',middleware.loggedIn,function (req,res) {
     var image = req.body.img;
     var content=req.body.content;
     var title=req.body.title;
@@ -267,7 +265,7 @@ router.get('/personal/:id',function (req,res) {
 });
 
 
-router.get('/personal/:id/edit',function (req,res) {
+router.get('/personal/:id/edit',middleware.author,function (req,res) {
     post.findById(req.params.id,function (err,found) {
         if(err){
             console.log(err);
@@ -280,7 +278,7 @@ router.get('/personal/:id/edit',function (req,res) {
 });
 
 
-router.put('/personal/:id',function (req,res) {
+router.put('/personal/:id',middleware.author,function (req,res) {
     post.findByIdAndUpdate(req.params.id,{$set:{post:req.body.content,title:req.body.title,image:req.body.img}},function (err,found) {
         if(err){
             console.log(err);
@@ -291,7 +289,7 @@ router.put('/personal/:id',function (req,res) {
     })
 });
 
-router.delete('/personal/:id',function (req,res) {
+router.delete('/personal/:id',middleware.author,function (req,res) {
     post.findByIdAndDelete(req.params.id,function (err,found) {
         if (err){
             console.log(err);
@@ -351,7 +349,7 @@ router.post('/personal/:id/comments',middleware.loggedIn,function (req,res) {
 });
 
 
-router.get('/personal/:id/comments/:ids/edit/',function (req,res) {
+router.get('/personal/:id/comments/:ids/edit/',middleware.comment,function (req,res) {
     Comment.findById(req.params.ids,function (err,found) {
         if(err){
             console.log(err);
@@ -364,7 +362,7 @@ router.get('/personal/:id/comments/:ids/edit/',function (req,res) {
 
 });
 
-router.put('/personal/:id/comments/:ids',function (req,res) {
+router.put('/personal/:id/comments/:ids',middleware.comment,function (req,res) {
     Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
         if(err){
             console.log(err);
@@ -377,7 +375,7 @@ router.put('/personal/:id/comments/:ids',function (req,res) {
 
 });
 
-router.delete('/personal/:id/comments/:ids',function (req,res) {
+router.delete('/personal/:id/comments/:ids',middleware.comment,function (req,res) {
     Comment.findByIdAndDelete(req.params.ids,function (err,found) {
         if(err){
             console.log(err);
@@ -389,8 +387,6 @@ router.delete('/personal/:id/comments/:ids',function (req,res) {
     })
 
 });
-
-
 
 
 /*
@@ -408,7 +404,7 @@ router.get('/sports',function (req,res) {
     });
 });
 
-router.post('/sports',function (req,res) {
+router.post('/sports',middleware.loggedIn,function (req,res) {
     var image = req.body.img;
     var content=req.body.content;
     var title = req.body.title;
@@ -456,7 +452,7 @@ router.get('/sports/:id',function (req,res) {
 
 
 
-router.get('/sports/:id/edit',function (req,res) {
+router.get('/sports/:id/edit',middleware.author,function (req,res) {
     post.findById(req.params.id,function (err,found) {
         if(err){
             console.log(err);
@@ -469,7 +465,7 @@ router.get('/sports/:id/edit',function (req,res) {
 });
 
 
-router.put('/sports/:id',function (req,res) {
+router.put('/sports/:id',middleware.author,function (req,res) {
     post.findByIdAndUpdate(req.params.id,{$set:{post:req.body.content,title:req.body.title,image:req.body.img}},function (err,found) {
         if(err){
             console.log(err);
@@ -480,7 +476,7 @@ router.put('/sports/:id',function (req,res) {
     })
 });
 
-router.delete('/sports/:id',function (req,res) {
+router.delete('/sports/:id',middleware.author,function (req,res) {
     post.findByIdAndDelete(req.params.id,function (err,found) {
         if (err){
             console.log(err);
@@ -540,7 +536,7 @@ router.post('/sports/:id/comments',middleware.loggedIn,function (req,res) {
 });
 
 
-router.get('/sports/:id/comments/:ids/edit/',function (req,res) {
+router.get('/sports/:id/comments/:ids/edit/',middleware.comment,function (req,res) {
     Comment.findById(req.params.ids,function (err,found) {
         if(err){
             console.log(err);
@@ -553,7 +549,7 @@ router.get('/sports/:id/comments/:ids/edit/',function (req,res) {
 
 });
 
-router.put('/sports/:id/comments/:ids',function (req,res) {
+router.put('/sports/:id/comments/:ids',middleware.comment,function (req,res) {
     Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
         if(err){
             console.log(err);
@@ -566,7 +562,7 @@ router.put('/sports/:id/comments/:ids',function (req,res) {
 
 });
 
-router.delete('/sports/:id/comments/:ids',function (req,res) {
+router.delete('/sports/:id/comments/:ids',middleware.comment,function (req,res) {
     Comment.findByIdAndDelete(req.params.ids,function (err,found) {
         if(err){
             console.log(err);
@@ -574,12 +570,8 @@ router.delete('/sports/:id/comments/:ids',function (req,res) {
         else{
             res.redirect('/sports/'+req.params.id);
         }
-
     })
-
 });
-
-
 
 
 
@@ -601,7 +593,7 @@ router.get('/politics',function (req,res) {
     });
 });
 
-router.post('/politics',function (req,res) {
+router.post('/politics',middleware.loggedIn,function (req,res) {
     var image = req.body.img;
     var content=req.body.content;
     var author={
@@ -650,7 +642,7 @@ router.get('/politics/:id',function (req,res) {
 });
 
 
-router.get('/politics/:id/edit',function (req,res) {
+router.get('/politics/:id/edit',middleware.author,function (req,res) {
     post.findById(req.params.id,function (err,found) {
         if(err){
             console.log(err);
@@ -663,7 +655,7 @@ router.get('/politics/:id/edit',function (req,res) {
 });
 
 
-router.put('/politics/:id',function (req,res) {
+router.put('/politics/:id',middleware.author,function (req,res) {
     post.findByIdAndUpdate(req.params.id,{$set:{post:req.body.content,title:req.body.title,image:req.body.img}},function (err,found) {
         if(err){
             console.log(err);
@@ -674,7 +666,7 @@ router.put('/politics/:id',function (req,res) {
     })
 });
 
-router.delete('/politics/:id',function (req,res) {
+router.delete('/politics/:id',middleware.author,function (req,res) {
     post.findByIdAndDelete(req.params.id,function (err,found) {
         if (err){
             console.log(err);
@@ -734,7 +726,7 @@ router.post('/politics/:id/comments',middleware.loggedIn,function (req,res) {
 });
 
 
-router.get('/politics/:id/comments/:ids/edit/',function (req,res) {
+router.get('/politics/:id/comments/:ids/edit/',middleware.comment,function (req,res) {
     Comment.findById(req.params.ids,function (err,found) {
         if(err){
             console.log(err);
@@ -747,7 +739,7 @@ router.get('/politics/:id/comments/:ids/edit/',function (req,res) {
 
 });
 
-router.put('/politics/:id/comments/:ids',function (req,res) {
+router.put('/politics/:id/comments/:ids',middleware.comment,function (req,res) {
     Comment.findByIdAndUpdate(req.params.ids,{comment:req.body.comment},function (err,update) {
         if(err){
             console.log(err);
@@ -760,7 +752,7 @@ router.put('/politics/:id/comments/:ids',function (req,res) {
 
 });
 
-router.delete('/politics/:id/comments/:ids',function (req,res) {
+router.delete('/politics/:id/comments/:ids',middleware.comment,function (req,res) {
     Comment.findByIdAndDelete(req.params.ids,function (err,found) {
         if(err){
             console.log(err);
