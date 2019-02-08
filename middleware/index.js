@@ -16,7 +16,6 @@ middleware_obj.author=function(req,res,next){
     if(req.isAuthenticated()){
         post.findById(req.params.id,function (err,found) {
             if(err){
-                console.log("Yagan");
                 console.log(err);
             }
             else{
@@ -32,7 +31,6 @@ middleware_obj.author=function(req,res,next){
         });
     }
     else{
-        console.log("WOrking");
         res.redirect('/login');
     }
 };

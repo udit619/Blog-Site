@@ -8,7 +8,6 @@ var user = require('../models/user');
 var passport = require('passport');
 var Comment = require('../models/comment');
 var middleware = require('../middleware');
-//global variables
 
 
 /* GET home page. */
@@ -819,76 +818,3 @@ module.exports = router;
 
 
 
-/*
-
-router.post('/signup',function (req,res) {
-
-    // this is just because there is no official ID if there is no need to write this line
-    //let account = await.nodemailer.createTestAccount();
-    username=req.body.username;
-    password = req.body.password;
-
-    var smtpTransport = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-            user: "exampleid@gmail.com",
-            pass: "your password"
-        }
-    });
-    var rand,link,host;
-    host=req.host;
-    rand=Math.floor((Math.random()*100)+54);
-    link="http://"+host+"/verify?id="+rand;
-    mailOption={
-        to : req.body.username,
-        subject:'Please Verify Your Email',
-        html: "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
-    };
-    console.log(mailOption);
-
-    smtpTransport.sendMail(mailOptions, function(error, response){
-        if(error){
-            console.log(error);
-            res.end("error");
-        }else{
-            console.log("Message sent: " + response.message);
-        }
-    });
-    res.redirect('/');
-});
-
-
-router.get('/verify',function(req,res){
-    console.log(req.protocol+":/"+req.get('host'));
-    if((req.protocol+"://"+req.get('host'))===("http://"+host))
-    {
-        console.log("Domain is matched. Information is from Authentic email");
-        if(req.query.id==rand)
-        {
-            console.log("email is verified");
-
-            user.register({username:username},password,function (err,user) {
-                if(err){
-                    console.log(err);
-                    return res.render('signup') }
-                else
-                {
-                    passport.authenticate('local')(req,res,function () {
-                        res.redirect('/');
-                    });
-                }
-            });
-        }
-        else
-        {
-            console.log("email is not verified");
-            res.end("<h1>Bad Request</h1>");
-        }
-    }
-    else
-    {
-        res.end("<h1>Request is from unknown source");
-    }
-});
-
-*/
