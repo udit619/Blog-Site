@@ -8,7 +8,6 @@ var methodoverride=require('method-override');
 var localstatergy = require('passport-local');
 var indexRouter = require('./routes/index');
 var user = require('./models/user');
-var usersRouter = require('./routes/users');
 
 var app = express();
 

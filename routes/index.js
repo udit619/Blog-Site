@@ -62,8 +62,7 @@ router.post('/technology',middleware.loggedIn,function (req,res) {
 });
 
 router.get('/technology/new',middleware.loggedIn,function (req,res) {
-
-  res.render('new',{topic:"technology"});
+  res.render('topics/new',{topic:"technology"});
 });
 
 router.get('/technology/:id',function (req,res) {
@@ -247,7 +246,7 @@ router.post('/personal',middleware.loggedIn,function (req,res) {
 
 
 router.get('/personal/new',middleware.loggedIn,function (req,res) {
-    res.render('new',{topic:"personal"});
+    res.render('topics/new',{topic:"personal"});
 });
 
 router.get('/personal/:id',function (req,res) {
@@ -431,7 +430,7 @@ router.post('/sports',middleware.loggedIn,function (req,res) {
 
 router.get('/sports/new',middleware.loggedIn,function (req,res) {
 
-    res.render('new',{topic:"sports"});
+    res.render('topics/new',{topic:"sports"});
 
 });
 
@@ -622,7 +621,7 @@ router.post('/politics',middleware.loggedIn,function (req,res) {
 
 router.get('/politics/new',middleware.loggedIn,function (req,res) {
 
-    res.render('new',{topic:"politics"});
+    res.render('topics/new',{topic:"politics"});
 
 });
 
